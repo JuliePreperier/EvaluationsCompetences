@@ -10,9 +10,9 @@ namespace BLL
 {
     public static class ElevesObjectifsManager
     {
-        public static List<ElevesObjectifs> GetBranches(int IdEleves)
+        public static List<ElevesObjectifs> GetElevesObjectifs(int IdEleves)
         {
-            return ElevesObjectifsDB.GetBranches(IdEleves);
+            return ElevesObjectifsDB.GetElevesObjectifs(IdEleves);
         }
     }
 }

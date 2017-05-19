@@ -7,25 +7,47 @@ using System.Web.Mvc;
 using DTO;
 using BLL;
 
+
+
 namespace EvaluationsCompetences.Controllers
 {
-    public class CompetencesController
+    public class CompetencesController : Controller
     {
-        public ActionResult Classes(Professeurs professeur)
+        
+        public ActionResult Classes()
         {
-            if (Session["professeur"] == null)
-                return RedirectToAction("Login", "Home");
 
-            var professeurActuel = professeur;
-            var profs = professeur.Id;
+            if (Session["professeur"] == null || Session["eleve"] !=null )
+                return RedirectToAction("login", "Home");
 
-            ContactVM vm = new ContactVM();
+            var classe = ClassesManager.GetClasses(((DTO.Classes)Session["professeur"]).Id);
 
-            vm.Members = members;
-
-            return View(vm);
+            return View(classe);
         }
 
+        public ActionResult Eleves(int IdClasse)
+        {
+            if (Session["professeur"] == null || Session["eleve"] != null)
+                return RedirectToAction("login", "Home");
+
+
+            var classe = ElevesManager.GetAllEleves(IdClasse);
+
+            return View(classe);
+        }
+
+        public ActionResult EditEleves(int IdEleve)
+        {
+            if (Session["professeur"] == null || Session["eleve"] != null)
+                return RedirectToAction("login", "Home");
+
+
+            var eleve = ElevesManager.GetEleves(IdEleve);
+            var eleveobjectif = ElevesObjectifsManager.GetElevesObjectifs(IdEleve);
+            var objectif = ObjectifsManager.GetObjectifs(IdEleve);
+
+            return View();
+        }
 
 
     }

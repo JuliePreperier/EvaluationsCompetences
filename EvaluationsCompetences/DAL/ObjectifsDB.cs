@@ -12,7 +12,7 @@ namespace DAL
 {
     public class ObjectifsDB
     {
-        public static List<Objectifs> GetObjectifs(int IdObjectifs)
+        public static List<Objectifs> GetObjectifs(int IdEleves)
         {
             List<Objectifs> results = null;
 
@@ -22,9 +22,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Select * from Objectifs where id=@IdObjectifs ";
+                    string query = "Select * from Objectifs o, ElevesObjectifs eo where  @IdEleves=eo.IdEleves and o.id=eo.IdObjectifs";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@IdObjectifs", IdObjectifs);
+                    cmd.Parameters.AddWithValue("@IdEleves", IdEleves);
 
                     cn.Open();
 

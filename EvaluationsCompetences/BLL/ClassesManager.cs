@@ -17,7 +17,9 @@ namespace BLL
             return ClassesDB.GetClasses(IdProf);
         }
 
-
-
+        public static object GetClasses(object idMember)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -9,9 +9,9 @@ using System.Configuration;
 
 namespace DAL
 {
-   public  class ElevesObjectifsDB
+    public class ElevesObjectifsDB
     {
-        public static List<ElevesObjectifs> GetBranches(int IdEleves)
+        public static List<ElevesObjectifs> GetElevesObjectifs(int IdEleves)
         {
             List<ElevesObjectifs> results = null;
 
@@ -62,6 +62,60 @@ namespace DAL
 
             return results;
         }
+
+
+        public static void UpdateBranches(int IdEleve, int Niveaux)
+        {
+
+            string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                {
+                    string query = "Update ElevesObjectifs set Niveaux = @Niveaux where IdEleves=@IdElves";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@IdEleves", IdEleve);
+                    cmd.Parameters.AddWithValue("@Niveaux", Niveaux);
+
+                    cn.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static void UpdateBranches(int IdEleve, String Evaluation)
+        {
+
+            string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
+
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(connectionString))
+                {
+                    string query = "Update ElevesObjectifs set Evaluation = @Evaluation where IdEleves=@IdElves";
+                    SqlCommand cmd = new SqlCommand(query, cn);
+                    cmd.Parameters.AddWithValue("@IdEleves", IdEleve);
+                    cmd.Parameters.AddWithValue("@Evaluation", Evaluation);
+
+                    cn.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }
+
 
