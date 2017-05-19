@@ -45,6 +45,7 @@
     <Compile Include="ClassesDB.cs" />
     <Compile Include="ElevesDB.cs" />
     <Compile Include="ElevesObjectifsDB.cs" />
+    <Compile Include="GroupesDB.cs" />
     <Compile Include="ObjectifsDB.cs" />
     <Compile Include="ProfesseurDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

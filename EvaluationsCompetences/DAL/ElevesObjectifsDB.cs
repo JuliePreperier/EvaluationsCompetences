@@ -38,8 +38,8 @@ namespace DAL
 
                             elveobjectif.Id = (int)dr["Id"];
 
-                            if (dr["Niveau"] != null)
-                                elveobjectif.Niveau = (int)dr["Niveau"];
+                            if (dr["Niveaux"] != null)
+                                elveobjectif.Niveaux = (int)dr["Niveaux"];
 
                             if (dr["IdObjectifs"] != null)
                                 elveobjectif.IdObjectifs = (int)dr["IdObjectifs"];
@@ -48,7 +48,7 @@ namespace DAL
                                 elveobjectif.IdEleves = (int)dr["IdEleves"];
 
                             if (dr["Evaluation"] != null)
-                                elveobjectif.Evaluatoin = (String)dr["Evaluation"];
+                                elveobjectif.Evaluation = (String)dr["Evaluation"];
 
                             results.Add(elveobjectif);
                         }

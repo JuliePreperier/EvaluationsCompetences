@@ -13,9 +13,9 @@ namespace DAL
 {
     public class ProfesseurDB
     {
-        public static List<Professeurs> GetProfesseurs(String Username, String Password)
+        public static Professeurs GetProfesseurs(String Username, String Password)
         {
-            List<Professeurs> results = null;
+            Professeurs results = null;
 
             string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
 
@@ -35,7 +35,7 @@ namespace DAL
                         while (dr.Read())
                         {
                             if (results == null)
-                                results = new List<Professeurs>();
+                                results = new Professeurs();
 
                             Professeurs professeur = new Professeurs();
 
@@ -53,7 +53,7 @@ namespace DAL
                             if (dr["Password"] != null)
                                 professeur.Password = (string)dr["Password"];
 
-                            results.Add(professeur);
+                            results = professeur;
 
                         }
                     }

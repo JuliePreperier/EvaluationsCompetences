@@ -11,7 +11,7 @@ namespace DAL
 {
     public class BranchesDB
     {
-        public static Branches GetBranches(int IdObjectif)
+        public static Branches GetBranches(int IdGroupes)
         {
              Branches results = null;
 
@@ -21,9 +21,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Select * from Branches where Id=@IdObjectif ";
+                    string query = "Select * from Branches where Id=@IdGroupe ";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@IdObjectif", IdObjectif);
+                    cmd.Parameters.AddWithValue("@IdGroupe", IdGroupes);
 
                     cn.Open();
 

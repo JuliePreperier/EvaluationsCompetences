@@ -7,14 +7,13 @@ using DTO;
 using System.Data.SqlClient;
 using System.Configuration;
 
-
 namespace DAL
 {
-    public class ObjectifsDB
+    class GroupesDB
     {
-        public static List<Objectifs> GetObjectifs(int IdObjectifs)
+        public static Groupes GetBranches(int IdGroupes)
         {
-            List<Objectifs> results = null;
+            Groupes results = null;
 
             string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
 
@@ -22,9 +21,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Select * from Objectifs where id=@IdObjectifs ";
+                    string query = "Select * from Groupes where Id=@IdGroupe ";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@IdObjectifs", IdObjectifs);
+                    cmd.Parameters.AddWithValue("@IdGroupe", IdGroupes);
 
                     cn.Open();
 
@@ -33,23 +32,22 @@ namespace DAL
                         while (dr.Read())
                         {
                             if (results == null)
-                                results = new List<Objectifs>();
+                                results = new Groupes();
 
-                            Objectifs objectif = new Objectifs();
+                            Groupes groupe = new Groupes();
 
-                            objectif.Id = (int)dr["Id"];
+                            groupe.Id = (int)dr["Id"];
 
                             if (dr["Nom"] != null)
-                                objectif.Nom = (String)dr["Nom"];
+                                groupe.Nom = (String)dr["Nom"];
 
-                            if (dr["Minima"] != null)
-                                objectif.Minima = (Boolean)dr["Minima"];
+                            if (dr["Cycle"] != null)
+                                groupe.Cycle = (int)dr["Cycle"];
 
-                            if (dr["IdGroupe"] != null)
-                                objectif.Branches_Id = (int)dr["IdGroupe"];
+                            if (dr["IdBranches"] != null)
+                                groupe.IdBranches = (int)dr["IdBranches"];
 
-                            results.Add(objectif);
-
+                            results = groupe;
                         }
                     }
                 }
@@ -62,5 +60,5 @@ namespace DAL
             return results;
         }
     }
-
+}
 }
