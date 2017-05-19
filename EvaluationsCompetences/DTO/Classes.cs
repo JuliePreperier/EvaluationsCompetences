@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class Class1
+    class Classes
     {
+        public int Id { get; set; }
+
+        public String Nom { get; set; }
+
+        public int Cycle { get; set; }
     }
 }
