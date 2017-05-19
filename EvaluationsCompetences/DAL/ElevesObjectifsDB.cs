@@ -64,7 +64,7 @@ namespace DAL
         }
 
 
-        public static void UpdateBranches(int IdEleve, int Niveaux)
+        public static void UpdateBranches(int IdEleve, int Niveaux, String Evaluation)
         {
 
             string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
@@ -73,35 +73,10 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Update ElevesObjectifs set Niveaux = @Niveaux where IdEleves=@IdElves";
+                    string query = "Update ElevesObjectifs set Niveaux = @Niveaux, Evaluation = @Evaluation where IdEleves=@IdElves";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@IdEleves", IdEleve);
                     cmd.Parameters.AddWithValue("@Niveaux", Niveaux);
-
-                    cn.Open();
-
-                    cmd.ExecuteNonQuery();
-                }
-
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public static void UpdateBranches(int IdEleve, String Evaluation)
-        {
-
-            string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
-
-            try
-            {
-                using (SqlConnection cn = new SqlConnection(connectionString))
-                {
-                    string query = "Update ElevesObjectifs set Evaluation = @Evaluation where IdEleves=@IdElves";
-                    SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@IdEleves", IdEleve);
                     cmd.Parameters.AddWithValue("@Evaluation", Evaluation);
 
                     cn.Open();

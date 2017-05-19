@@ -20,7 +20,8 @@ namespace EvaluationsCompetences.Controllers
             if (Session["professeur"] == null || Session["eleve"] !=null )
                 return RedirectToAction("login", "Home");
 
-            var classe = ClassesManager.GetClasses(((DTO.Classes)Session["professeur"]).Id);
+
+            var classe = ClassesManager.GetClasses(((DTO.Professeurs)Session["professeur"]).Id);
 
             return View(classe);
         }
@@ -45,8 +46,56 @@ namespace EvaluationsCompetences.Controllers
             var eleve = ElevesManager.GetEleves(IdEleve);
             var eleveobjectif = ElevesObjectifsManager.GetElevesObjectifs(IdEleve);
             var objectif = ObjectifsManager.GetObjectifs(IdEleve);
+            var groupe = GroupesManager.GetBranches(eleve.Classes_Id);
+            var branche = BranchesManager.GetBranches(groupe.IdBranches);
 
+            DetailsElevesVM details = new DetailsElevesVM
+            {
+                eleves = eleve,
+                elevesObjectifs = eleveobjectif,
+                objectifs = objectif,
+                groupes = groupe,
+                branches = branche
+    
+            };
+
+            return View(details);
+        }
+
+        [HttpPost]
+        public ActionResult EditEleves(DetailsElevesVM details)
+        {
+            for(int i=0; i < details.elevesObjectifs.Count() ;i++)
+            {
+                ElevesObjectifsManager.UpdateElevesObjectifs((int) details.elevesObjectifs.ElementAt(i).IdEleves,(int) details.elevesObjectifs.ElementAt(i).Niveaux, details.elevesObjectifs.ElementAt(i).Evaluation);
+            }
             return View();
+        }
+
+
+        public ActionResult DetailsEleves(int IdEleve)
+        {
+            if (Session["professeur"] == null || Session["eleve"] == null)
+                return RedirectToAction("login", "Home");
+
+
+            var eleve = ElevesManager.GetEleves(IdEleve);
+            var eleveobjectif = ElevesObjectifsManager.GetElevesObjectifs(IdEleve);
+            var objectif = ObjectifsManager.GetObjectifs(IdEleve);
+            var groupe = GroupesManager.GetBranches(eleve.Classes_Id);
+            var branche = BranchesManager.GetBranches(groupe.IdBranches);
+
+            DetailsElevesVM details = new DetailsElevesVM
+            {
+                eleves = eleve,
+                elevesObjectifs = eleveobjectif,
+                objectifs = objectif,
+                groupes = groupe,
+                branches = branche
+
+            };
+
+            return View(details);
         }
 
 

@@ -46,7 +46,7 @@ namespace DAL
                                 objectif.Minima = (Boolean)dr["Minima"];
 
                             if (dr["IdGroupe"] != null)
-                                objectif.Branches_Id = (int)dr["IdGroupe"];
+                                objectif.IdGroupe = (int)dr["IdGroupe"];
 
                             results.Add(objectif);
 
