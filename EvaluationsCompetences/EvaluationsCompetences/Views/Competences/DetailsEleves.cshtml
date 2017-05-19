@@ -33,22 +33,28 @@
             <td>
                 @Html.DisplayFor(modelItem => modelItem.groupes)
             </td>
+        </tr>
+        <tr>
             @for (int i = 0; i < Model.objectifs.Count(); i++)
             {
                 if (Model.objectifs.ElementAt(i).Minima == true)
                 {
-                    
-                        <td>
-                            <b>@Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom) </b>
 
-                         </td>
+                    <td>
+                        <b>@Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom) </b>
+
+                    </td>
                 }
                 else
-                    @Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom)
-
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom)
+                    </td>
+                }
 
             }
         </tr>
+
 
         }
        
