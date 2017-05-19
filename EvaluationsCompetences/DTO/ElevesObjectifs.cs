@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class ElevesObjectifs
+    public class ElevesObjectifs
     {
         public int Id { get; set; }
         public int Niveau { get; set; }

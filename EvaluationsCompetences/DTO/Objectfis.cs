@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    class Objectfis
+    public class Objectfis
     {
         public int Id { get; set; }
         public String Nom { get; set; }
