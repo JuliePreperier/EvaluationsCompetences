@@ -12,28 +12,43 @@
 {
     <table class="table">
        
+        <tr>
+            <th>
+                @Html.DisplayFor(modelItem => modelItem.eleves.Prenom)
+            </th>
+            <th>
+                @Html.DisplayFor(modelItem => modelItem.eleves.Nom)
+            </th>
+        </tr>
           
+        <tr>
+            <th>
+                Branche
+            </th>
+        </tr>
+        <tr>
 
-        <tr>
-            <th>
-            Branche
-            </th>
-            <th>
-            Groupes
-            </th>
-            <th>
-            Objectifs
-            </th>
-    </tr>
-        <tr>
             <td>
                 @Html.DisplayFor(modelItem => modelItem.branches.Nom)
             </td>
-
+        </tr>
+        <tr>
+            <th>
+                Groupes
+            </th>
+        </tr>
+        <tr>
             <td>
-                @Html.DisplayFor(modelItem => modelItem.groupes)
+                @Html.DisplayFor(modelItem => modelItem.groupes.Nom)
             </td>
         </tr>
+    
+        <tr>
+            <th>
+                Objectifs
+            </th>
+        </tr>
+       
         <tr>
             @for (int i = 0; i < Model.objectifs.Count(); i++)
             {
