@@ -75,7 +75,7 @@ namespace EvaluationsCompetences.Controllers
 
         public ActionResult DetailsEleves(int IdEleve)
         {
-            if (Session["professeur"] == null || Session["eleve"] == null)
+            if (Session["professeur"] == null)
                 return RedirectToAction("login", "Home");
 
 
