@@ -7,15 +7,13 @@ using DTO;
 using System.Data.SqlClient;
 using System.Configuration;
 
-
-
 namespace DAL
 {
-    public class ProfesseurDB
+    public class ElevesDB
     {
-        public static List<Professeurs> GetProfesseurs(String Username, String Password)
+        public static List<Eleves> GetEleves(int IdClasses)
         {
-            List<Professeurs> results = null;
+            List<Eleves> results = null;
 
             string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
 
@@ -23,10 +21,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Select * from Professeurs where Username=@Username and Password=@Password ";
+                    string query = "Select * from Eleves where Classes_Id=@IdClasses ";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@Username", Username);
-                    cmd.Parameters.AddWithValue("@Password", Password);
+                    cmd.Parameters.AddWithValue("@IdClasses", IdClasses);
 
                     cn.Open();
 
@@ -35,25 +32,28 @@ namespace DAL
                         while (dr.Read())
                         {
                             if (results == null)
-                                results = new List<Professeurs>();
+                                results = new List<Eleves>();
 
-                            Professeurs professeur = new Professeurs();
+                            Eleves eleve = new Eleves();
 
-                            professeur.Id = (int)dr["Id"];
+                            eleve.Id = (int)dr["Id"];
 
                             if (dr["Nom"] != null)
-                               professeur.Nom = (String)dr["Nom"];
+                                eleve.Nom = (String)dr["Nom"];
 
                             if (dr["Prenom"] != null)
-                                professeur.Prenom = (string)dr["Prenom"];
+                                eleve.Prenom = (string)dr["Prenom"];
 
                             if (dr["Username"] != null)
-                                professeur.Username = (string)dr["Username"];
+                                eleve.Username = (string)dr["Username"];
 
                             if (dr["Password"] != null)
-                                professeur.Password = (string)dr["Password"];
+                                eleve.Password = (string)dr["Password"];
 
-                            results.Add(professeur);
+                            if (dr["Classes_Id"] != null)
+                                eleve.Classes_Id = (int)dr["Classes_Id"];
+
+                            results.Add(eleve);
 
                         }
                     }
@@ -67,4 +67,6 @@ namespace DAL
             return results;
         }
     }
+
 }
+

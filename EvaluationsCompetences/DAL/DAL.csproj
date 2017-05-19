@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BranchesDB.cs" />
     <Compile Include="ClassesDB.cs" />
+    <Compile Include="ElevesDB.cs" />
+    <Compile Include="ElevesObjectifsDB.cs" />
+    <Compile Include="ObjectifsDB.cs" />
     <Compile Include="ProfesseurDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

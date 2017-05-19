@@ -25,5 +25,12 @@ namespace DTO
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Branches> Branches { get; set; }
+        public virtual DbSet<Classes> Classes { get; set; }
+        public virtual DbSet<Eleves> Eleves { get; set; }
+        public virtual DbSet<ElevesObjectifs> ElevesObjectifs { get; set; }
+        public virtual DbSet<Objectifs> Objectifs { get; set; }
+        public virtual DbSet<Professeurs> Professeurs { get; set; }
+        public virtual DbSet<ProfesseursClasses> ProfesseursClasses { get; set; }
     }
 }
