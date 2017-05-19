@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public static class ProfesseurManager
+    public static class GroupesManager
     {
-        public static Professeurs GetProfesseurs(String Username, String Password)
+        public static Groupes GetBranches(int IdGroupes)
         {
-            return ProfesseurDB.GetProfesseurs(Username, Password);
+            return GroupesDB.GetBranches(IdGroupes);
         }
 
     }

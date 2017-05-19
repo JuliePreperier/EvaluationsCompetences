@@ -126,9 +126,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\DetailsEleves.cs" />
+    <Compile Include="ViewModels\DetailsElevesVM.cs" />
     <Compile Include="ViewModels\EditElevesVM.cs" />
-    <Compile Include="ViewModels\ElevesVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@ using System.Configuration;
 
 namespace DAL
 {
-    class GroupesDB
+    public class GroupesDB
     {
         public static Groupes GetBranches(int IdGroupes)
         {

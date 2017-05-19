@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public static class ProfesseurManager
+    public static class BranchesManager
     {
-        public static Professeurs GetProfesseurs(String Username, String Password)
+        //Récupère les branches
+        public static Branches GetBranches(int IdObjectif)
         {
-            return ProfesseurDB.GetProfesseurs(Username, Password);
+            return BranchesDB.GetBranches(IdObjectif);
         }
+
+
 
     }
 }

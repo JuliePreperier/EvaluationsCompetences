@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public static class ProfesseurManager
+    public static class ObjectifsManager
     {
-        public static Professeurs GetProfesseurs(String Username, String Password)
+        public static List<Objectifs> GetObjectifs(int IdObjectifs)
         {
-            return ProfesseurDB.GetProfesseurs(Username, Password);
+            return ObjectifsDB.GetObjectifs(IdObjectifs);
         }
+
 
     }
 }

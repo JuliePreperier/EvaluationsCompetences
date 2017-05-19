@@ -40,7 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BranchesManager.cs" />
     <Compile Include="ClassesManager.cs" />
+    <Compile Include="ElevesManager.cs" />
+    <Compile Include="ElevesObjectifsManager.cs" />
+    <Compile Include="GroupesManager.cs" />
+    <Compile Include="ObjectifsManager.cs" />
     <Compile Include="ProfesseurManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
