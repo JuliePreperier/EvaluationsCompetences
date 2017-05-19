@@ -77,7 +77,7 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Select * from Eleves where Id=@IEleve ";
+                    string query = "Select * from Eleves where Id=@IdEleve ";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@IdEleve", IdEleve);
 

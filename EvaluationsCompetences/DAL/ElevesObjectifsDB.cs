@@ -21,7 +21,7 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Select * from ElevesObjectifs where IdEleves=@IdElves";
+                    string query = "Select * from ElevesObjectifs where IdEleves=@IdEleves";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@IdEleves", IdEleves);
 

@@ -1,6 +1,7 @@
 ﻿@model EvaluationsCompetences.ViewModels.DetailsElevesVM
 @{
-    Layout = null;
+    ViewBag.Title = "Classes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 {
     <table class="table">
        
-          for (int i = 0; i < Model.messagesGroupe.Count(); i++)
+          @for (int i = 0; i < Model.messagesGroupe.Count(); i++)
             {
 
         <tr>
@@ -40,3 +41,4 @@
         }
        
     </table>
+}
