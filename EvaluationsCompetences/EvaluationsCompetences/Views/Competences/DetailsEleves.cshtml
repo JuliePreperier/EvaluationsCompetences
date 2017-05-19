@@ -19,8 +19,7 @@
             <th>
                 @Html.DisplayFor(modelItem => modelItem.eleves.Nom)
             </th>
-        </tr>
-          
+        </tr>    
         <tr>
             <th>
                 Branche
@@ -50,11 +49,13 @@
         </tr>
        
         <tr>
+            <th>
+
+           
             @for (int i = 0; i < Model.objectifs.Count(); i++)
             {
                 if (Model.objectifs.ElementAt(i).Minima == true)
                 {
-
                     <td>
                         <b>@Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom) </b>
 
@@ -67,6 +68,16 @@
                     </td>
                 }
 
+             </th>
+            <th>
+                @Html.Label("Acquisition", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    &nbsp;&nbsp;&nbsp;
+                    @Html.RadioButtonFor(Model => Model.elevesObjectifs.ElementAt(i).Niveaux, 0) Non-Acquis
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.RadioButtonFor(Model => Model.elevesObjectifs.ElementAt(i).Niveaux, 1) Acquis
+                </div>
+            </th>
             }
         </tr>
 
