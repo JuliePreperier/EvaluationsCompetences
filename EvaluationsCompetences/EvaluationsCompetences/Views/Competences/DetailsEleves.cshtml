@@ -26,7 +26,6 @@
             </th>
         </tr>
         <tr>
-
             <td>
                 @Html.DisplayFor(modelItem => modelItem.branches.Nom)
             </td>
@@ -48,39 +47,40 @@
             </th>
         </tr>
        
-        <tr>
-            
+     
 
            
             @for (int i = 0; i < Model.objectifs.Count(); i++)
             {
-                <th>
-                if (Model.objectifs.ElementAt(i).Minima == true)
-                {
-                    <td>
+                <tr>
+
+                    if (Model.objectifs.ElementAt(i).Minima == true)
+                    {
+                    <th>
                         <b>@Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom) </b>
 
-                    </td>
-                }
-                else
-                {
-                    <td>
+                    </th>
+                    }
+                    else
+                    {
+                    <th>
                         @Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom)
-                    </td>
-                }
+                    </th>
+                    }
 
-             </th>
-            <th>
-                @Html.Label("Acquisition", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    &nbsp;&nbsp;&nbsp;
-                    @Html.RadioButtonFor(Model => Model.elevesObjectifs.ElementAt(i).Niveaux, 0) Non-Acquis
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    @Html.RadioButtonFor(Model => Model.elevesObjectifs.ElementAt(i).Niveaux, 1) Acquis
-                </div>
-            </th>
+
+                    <th>
+                        @Html.Label("Acquisition", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            &nbsp;&nbsp;&nbsp;
+                            @Html.RadioButtonFor(Model => Model.elevesObjectifs.ElementAt(i).Niveaux, 0) Non-Acquis
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            @Html.RadioButtonFor(Model => Model.elevesObjectifs.ElementAt(i).Niveaux, 1) Acquis
+                        </div>
+                    </th>
+                </tr>
             }
-        </tr>
+            
 
 
         }
