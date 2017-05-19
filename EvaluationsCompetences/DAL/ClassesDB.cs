@@ -22,7 +22,7 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Select * from Classes c, ProfesseurClasses pf where c.id=pf.IdClasse and pf.IdProf=@IdProf ";
+                    string query = "Select * from Classes c, ProfesseursClasses pf where c.id=pf.IdClasses and pf.IdProfesseurs=@IdProf ";
                     SqlCommand cmd = new SqlCommand(query, cn);
                     cmd.Parameters.AddWithValue("@IdProf", IdProf);
 

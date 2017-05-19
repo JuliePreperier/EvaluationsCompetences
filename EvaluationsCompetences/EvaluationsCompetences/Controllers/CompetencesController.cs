@@ -20,7 +20,7 @@ namespace EvaluationsCompetences.Controllers
             if (Session["professeur"] == null || Session["eleve"] !=null )
                 return RedirectToAction("login", "Home");
 
-            var classe = ClassesManager.GetClasses(((DTO.Classes)Session["professeur"]).Id);
+            var classe = ClassesManager.GetClasses(((Professeurs)Session["professeur"]).Id);
 
             return View(classe);
         }

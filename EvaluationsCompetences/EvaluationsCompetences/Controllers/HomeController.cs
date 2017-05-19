@@ -41,7 +41,7 @@ namespace EvaluationsCompetences.Controllers
                 if (professeur != null)
                 {
                     Session["professeur"] = professeur;
-                    return RedirectToAction("Index", "Classes");
+                    return RedirectToAction("Index", "Competences/Classes");
                 }
               
                 

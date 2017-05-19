@@ -22,9 +22,7 @@ namespace DTO
     
         public int Id { get; set; }
         public string Nom { get; set; }
-        public int Cycle { get; set; }
         public bool Minima { get; set; }
-        public int Branches_Id { get; set; }
         public int IdGroupe { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

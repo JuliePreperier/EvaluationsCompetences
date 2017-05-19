@@ -17,10 +17,19 @@
    <table class="table"> 
     @foreach (var item in Model) {
         <tr>
+            <td></td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
             </td>
-            
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                @Html.ActionLink("Details", "Eleves", new { /* id=item.PrimaryKey */ }) |
+            </td>
         </tr>
     }
     

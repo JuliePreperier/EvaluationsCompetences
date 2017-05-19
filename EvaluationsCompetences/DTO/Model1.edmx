@@ -290,9 +290,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Cycle" Type="Int32" Nullable="false" />
           <Property Name="Minima" Type="Boolean" Nullable="false" />
-          <Property Name="Branches_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ElevesObjectifs" Relationship="Model1.FK_ElevesObjIdObj_60A75C0F" FromRole="Objectifs" ToRole="ElevesObjectifs" />
           <Property Name="IdGroupe" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Groupes" Relationship="Model1.FK__Objectifs__IdGro__6E01572D" FromRole="Objectifs" ToRole="Groupes" />
