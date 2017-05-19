@@ -12,12 +12,14 @@
         <EntityTypeShape EntityType="Model1.Objectifs" Width="1.5" PointX="3" PointY="10.375" />
         <EntityTypeShape EntityType="Model1.Professeurs" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="Model1.ProfesseursClasses" Width="1.5" PointX="3" PointY="2.875" />
-        <AssociationConnector Association="Model1.FK_ObjectifsBranches" />
         <AssociationConnector Association="Model1.FK_ClassesEleves" />
         <AssociationConnector Association="Model1.FK_ProfesseuIdCla_5DCAEF64" />
         <AssociationConnector Association="Model1.FK_ElevesObjIdEle_619B8048" />
         <AssociationConnector Association="Model1.FK_ElevesObjIdObj_60A75C0F" />
         <AssociationConnector Association="Model1.FK_ProfesseuIdPro_5CD6CB2B" />
+        <EntityTypeShape EntityType="Model1.Groupes" Width="1.5" PointX="3" PointY="14.5" />
+        <AssociationConnector Association="Model1.FK__Groupes__IdBranc__49C3F6B7" />
+        <AssociationConnector Association="Model1.FK__Objectifs__IdGro__6E01572D" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

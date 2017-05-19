@@ -12,18 +12,21 @@ namespace DTO
     using System;
     using System.Collections.Generic;
     
-    public partial class Branches
+    public partial class Groupes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Branches()
+        public Groupes()
         {
-            this.Groupes = new HashSet<Groupes>();
+            this.Objectifs = new HashSet<Objectifs>();
         }
     
         public int Id { get; set; }
         public string Nom { get; set; }
+        public int Cycle { get; set; }
+        public int IdBranches { get; set; }
     
+        public virtual Branches Branches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Groupes> Groupes { get; set; }
+        public virtual ICollection<Objectifs> Objectifs { get; set; }
     }
 }

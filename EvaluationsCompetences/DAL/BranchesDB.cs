@@ -11,9 +11,9 @@ namespace DAL
 {
     public class BranchesDB
     {
-        public static List<Branches> GetBranches(int IdObjectif)
+        public static Branches GetBranches(int IdObjectif)
         {
-            List<Branches> results = null;
+             Branches results = null;
 
             string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
 
@@ -32,7 +32,7 @@ namespace DAL
                         while (dr.Read())
                         {
                             if (results == null)
-                                results = new List<Branches>();
+                                results = new Branches();
 
                             Branches branches = new Branches();
 
@@ -41,7 +41,7 @@ namespace DAL
                             if (dr["Nom"] != null)
                                 branches.Nom = (String)dr["Nom"];
 
-                            results.Add(branches);
+                            results =branches;
                         }
                     }
                 }

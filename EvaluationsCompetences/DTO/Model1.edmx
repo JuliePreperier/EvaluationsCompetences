@@ -4,177 +4,202 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="Model1StoreContainer">
-    <EntitySet Name="Branches" EntityType="Model1.Store.Branches" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Classes" EntityType="Model1.Store.Classes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Eleves" EntityType="Model1.Store.Eleves" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ElevesObjectifs" EntityType="Model1.Store.ElevesObjectifs" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Objectifs" EntityType="Model1.Store.Objectifs" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Professeurs" EntityType="Model1.Store.Professeurs" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ProfesseursClasses" EntityType="Model1.Store.ProfesseursClasses" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_ObjectifsBranches" Association="Model1.Store.FK_ObjectifsBranches">
-      <End Role="Branches" EntitySet="Branches" />
-      <End Role="Objectifs" EntitySet="Objectifs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ClassesEleves" Association="Model1.Store.FK_ClassesEleves">
-      <End Role="Classes" EntitySet="Classes" />
-      <End Role="Eleves" EntitySet="Eleves" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProfesseuIdCla_5DCAEF64" Association="Model1.Store.FK_ProfesseuIdCla_5DCAEF64">
-      <End Role="Classes" EntitySet="Classes" />
-      <End Role="ProfesseursClasses" EntitySet="ProfesseursClasses" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ElevesObjIdEle_619B8048" Association="Model1.Store.FK_ElevesObjIdEle_619B8048">
-      <End Role="Eleves" EntitySet="Eleves" />
-      <End Role="ElevesObjectifs" EntitySet="ElevesObjectifs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ElevesObjIdObj_60A75C0F" Association="Model1.Store.FK_ElevesObjIdObj_60A75C0F">
-      <End Role="Objectifs" EntitySet="Objectifs" />
-      <End Role="ElevesObjectifs" EntitySet="ElevesObjectifs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProfesseuIdPro_5CD6CB2B" Association="Model1.Store.FK_ProfesseuIdPro_5CD6CB2B">
-      <End Role="Professeurs" EntitySet="Professeurs" />
-      <End Role="ProfesseursClasses" EntitySet="ProfesseursClasses" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Branches">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Nom" Type="varchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Classes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Nom" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Cycle" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Eleves">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Nom" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Prenom" Type="nchar" Nullable="false" MaxLength="10" />
-    <Property Name="Username" Type="nchar" Nullable="false" MaxLength="10" />
-    <Property Name="Password" Type="nchar" Nullable="false" MaxLength="10" />
-    <Property Name="Classes_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ElevesObjectifs">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Niveaux" Type="int" Nullable="true" />
-    <Property Name="IdObjectifs" Type="int" Nullable="true" />
-    <Property Name="IdEleves" Type="int" Nullable="true" />
-    <Property Name="Evaluation" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Objectifs">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Nom" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Cycle" Type="int" Nullable="false" />
-    <Property Name="Minima" Type="bit" Nullable="false" />
-    <Property Name="Branches_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Professeurs">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Nom" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Prenom" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="ProfesseursClasses">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="IdProfesseurs" Type="int" Nullable="false" />
-    <Property Name="IdClasses" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="FK_ObjectifsBranches">
-    <End Role="Branches" Type="Model1.Store.Branches" Multiplicity="1" />
-    <End Role="Objectifs" Type="Model1.Store.Objectifs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Branches">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Objectifs">
-        <PropertyRef Name="Branches_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ClassesEleves">
-    <End Role="Classes" Type="Model1.Store.Classes" Multiplicity="1" />
-    <End Role="Eleves" Type="Model1.Store.Eleves" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Classes">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Eleves">
-        <PropertyRef Name="Classes_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProfesseuIdCla_5DCAEF64">
-    <End Role="Classes" Type="Model1.Store.Classes" Multiplicity="1" />
-    <End Role="ProfesseursClasses" Type="Model1.Store.ProfesseursClasses" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Classes">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProfesseursClasses">
-        <PropertyRef Name="IdClasses" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ElevesObjIdEle_619B8048">
-    <End Role="Eleves" Type="Model1.Store.Eleves" Multiplicity="0..1" />
-    <End Role="ElevesObjectifs" Type="Model1.Store.ElevesObjectifs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Eleves">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ElevesObjectifs">
-        <PropertyRef Name="IdEleves" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ElevesObjIdObj_60A75C0F">
-    <End Role="Objectifs" Type="Model1.Store.Objectifs" Multiplicity="0..1" />
-    <End Role="ElevesObjectifs" Type="Model1.Store.ElevesObjectifs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Objectifs">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ElevesObjectifs">
-        <PropertyRef Name="IdObjectifs" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProfesseuIdPro_5CD6CB2B">
-    <End Role="Professeurs" Type="Model1.Store.Professeurs" Multiplicity="1" />
-    <End Role="ProfesseursClasses" Type="Model1.Store.ProfesseursClasses" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Professeurs">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="ProfesseursClasses">
-        <PropertyRef Name="IdProfesseurs" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branches">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Classes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cycle" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Eleves">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Username" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Classes_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ElevesObjectifs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Niveaux" Type="int" />
+          <Property Name="IdObjectifs" Type="int" />
+          <Property Name="IdEleves" Type="int" />
+          <Property Name="Evaluation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Groupes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nom" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Cycle" Type="int" Nullable="false" />
+          <Property Name="IdBranches" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Objectifs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdGroupe" Type="int" Nullable="false" />
+          <Property Name="Minima" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Professeurs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfesseursClasses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdProfesseurs" Type="int" Nullable="false" />
+          <Property Name="IdClasses" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Groupes__IdBranc__49C3F6B7">
+          <End Role="Branches" Type="Self.Branches" Multiplicity="1" />
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branches">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groupes">
+              <PropertyRef Name="IdBranches" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Objectifs__IdGro__6E01572D">
+          <End Role="Groupes" Type="Self.Groupes" Multiplicity="1" />
+          <End Role="Objectifs" Type="Self.Objectifs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Objectifs">
+              <PropertyRef Name="IdGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassesEleves">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+          <End Role="Eleves" Type="Self.Eleves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Eleves">
+              <PropertyRef Name="Classes_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElevesObjIdEle_619B8048">
+          <End Role="Eleves" Type="Self.Eleves" Multiplicity="0..1" />
+          <End Role="ElevesObjectifs" Type="Self.ElevesObjectifs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Eleves">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ElevesObjectifs">
+              <PropertyRef Name="IdEleves" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ElevesObjIdObj_60A75C0F">
+          <End Role="Objectifs" Type="Self.Objectifs" Multiplicity="0..1" />
+          <End Role="ElevesObjectifs" Type="Self.ElevesObjectifs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Objectifs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ElevesObjectifs">
+              <PropertyRef Name="IdObjectifs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfesseuIdCla_5DCAEF64">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+          <End Role="ProfesseursClasses" Type="Self.ProfesseursClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesseursClasses">
+              <PropertyRef Name="IdClasses" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfesseuIdPro_5CD6CB2B">
+          <End Role="Professeurs" Type="Self.Professeurs" Multiplicity="1" />
+          <End Role="ProfesseursClasses" Type="Self.ProfesseursClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Professeurs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesseursClasses">
+              <PropertyRef Name="IdProfesseurs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Model1StoreContainer">
+          <EntitySet Name="Branches" EntityType="Self.Branches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Eleves" EntityType="Self.Eleves" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ElevesObjectifs" EntityType="Self.ElevesObjectifs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groupes" EntityType="Self.Groupes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Objectifs" EntityType="Self.Objectifs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Professeurs" EntityType="Self.Professeurs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfesseursClasses" EntityType="Self.ProfesseursClasses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Groupes__IdBranc__49C3F6B7" Association="Self.FK__Groupes__IdBranc__49C3F6B7">
+            <End Role="Branches" EntitySet="Branches" />
+            <End Role="Groupes" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Objectifs__IdGro__6E01572D" Association="Self.FK__Objectifs__IdGro__6E01572D">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Objectifs" EntitySet="Objectifs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassesEleves" Association="Self.FK_ClassesEleves">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Eleves" EntitySet="Eleves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElevesObjIdEle_619B8048" Association="Self.FK_ElevesObjIdEle_619B8048">
+            <End Role="Eleves" EntitySet="Eleves" />
+            <End Role="ElevesObjectifs" EntitySet="ElevesObjectifs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ElevesObjIdObj_60A75C0F" Association="Self.FK_ElevesObjIdObj_60A75C0F">
+            <End Role="Objectifs" EntitySet="Objectifs" />
+            <End Role="ElevesObjectifs" EntitySet="ElevesObjectifs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfesseuIdCla_5DCAEF64" Association="Self.FK_ProfesseuIdCla_5DCAEF64">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="ProfesseursClasses" EntitySet="ProfesseursClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfesseuIdPro_5CD6CB2B" Association="Self.FK_ProfesseuIdPro_5CD6CB2B">
+            <End Role="Professeurs" EntitySet="Professeurs" />
+            <End Role="ProfesseursClasses" EntitySet="ProfesseursClasses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -186,10 +211,6 @@
           <EntitySet Name="Objectifs" EntityType="Model1.Objectifs" />
           <EntitySet Name="Professeurs" EntityType="Model1.Professeurs" />
           <EntitySet Name="ProfesseursClasses" EntityType="Model1.ProfesseursClasses" />
-          <AssociationSet Name="FK_ObjectifsBranches" Association="Model1.FK_ObjectifsBranches">
-            <End Role="Branches" EntitySet="Branches" />
-            <End Role="Objectifs" EntitySet="Objectifs" />
-          </AssociationSet>
           <AssociationSet Name="FK_ClassesEleves" Association="Model1.FK_ClassesEleves">
             <End Role="Classes" EntitySet="Classes" />
             <End Role="Eleves" EntitySet="Eleves" />
@@ -210,6 +231,15 @@
             <End Role="Professeurs" EntitySet="Professeurs" />
             <End Role="ProfesseursClasses" EntitySet="ProfesseursClasses" />
           </AssociationSet>
+          <EntitySet Name="Groupes" EntityType="Model1.Groupes" />
+          <AssociationSet Name="FK__Groupes__IdBranc__49C3F6B7" Association="Model1.FK__Groupes__IdBranc__49C3F6B7">
+            <End Role="Branches" EntitySet="Branches" />
+            <End Role="Groupes" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Objectifs__IdGro__6E01572D" Association="Model1.FK__Objectifs__IdGro__6E01572D">
+            <End Role="Groupes" EntitySet="Groupes" />
+            <End Role="Objectifs" EntitySet="Objectifs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Branches">
           <Key>
@@ -217,7 +247,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Objectifs" Relationship="Model1.FK_ObjectifsBranches" FromRole="Branches" ToRole="Objectifs" />
+          <NavigationProperty Name="Groupes" Relationship="Model1.FK__Groupes__IdBranc__49C3F6B7" FromRole="Branches" ToRole="Groupes" />
         </EntityType>
         <EntityType Name="Classes">
           <Key>
@@ -263,8 +293,9 @@
           <Property Name="Cycle" Type="Int32" Nullable="false" />
           <Property Name="Minima" Type="Boolean" Nullable="false" />
           <Property Name="Branches_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Branches" Relationship="Model1.FK_ObjectifsBranches" FromRole="Objectifs" ToRole="Branches" />
           <NavigationProperty Name="ElevesObjectifs" Relationship="Model1.FK_ElevesObjIdObj_60A75C0F" FromRole="Objectifs" ToRole="ElevesObjectifs" />
+          <Property Name="IdGroupe" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Groupes" Relationship="Model1.FK__Objectifs__IdGro__6E01572D" FromRole="Objectifs" ToRole="Groupes" />
         </EntityType>
         <EntityType Name="Professeurs">
           <Key>
@@ -287,18 +318,6 @@
           <NavigationProperty Name="Classes" Relationship="Model1.FK_ProfesseuIdCla_5DCAEF64" FromRole="ProfesseursClasses" ToRole="Classes" />
           <NavigationProperty Name="Professeurs" Relationship="Model1.FK_ProfesseuIdPro_5CD6CB2B" FromRole="ProfesseursClasses" ToRole="Professeurs" />
         </EntityType>
-        <Association Name="FK_ObjectifsBranches">
-          <End Type="Model1.Branches" Role="Branches" Multiplicity="1" />
-          <End Type="Model1.Objectifs" Role="Objectifs" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branches">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Objectifs">
-              <PropertyRef Name="Branches_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ClassesEleves">
           <End Type="Model1.Classes" Role="Classes" Multiplicity="1" />
           <End Type="Model1.Eleves" Role="Eleves" Multiplicity="*" />
@@ -359,6 +378,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Groupes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Cycle" Type="Int32" Nullable="false" />
+          <Property Name="IdBranches" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Branches" Relationship="Model1.FK__Groupes__IdBranc__49C3F6B7" FromRole="Groupes" ToRole="Branches" />
+          <NavigationProperty Name="Objectifs" Relationship="Model1.FK__Objectifs__IdGro__6E01572D" FromRole="Groupes" ToRole="Objectifs" />
+        </EntityType>
+        <Association Name="FK__Groupes__IdBranc__49C3F6B7">
+          <End Type="Model1.Branches" Role="Branches" Multiplicity="1" />
+          <End Type="Model1.Groupes" Role="Groupes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branches">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groupes">
+              <PropertyRef Name="IdBranches" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Objectifs__IdGro__6E01572D">
+          <End Type="Model1.Groupes" Role="Groupes" Multiplicity="1" />
+          <End Type="Model1.Objectifs" Role="Objectifs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Objectifs">
+              <PropertyRef Name="IdGroupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -410,9 +464,8 @@
         <MappingFragment StoreEntitySet="Objectifs">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Nom" ColumnName="Nom" />
-          <ScalarProperty Name="Cycle" ColumnName="Cycle" />
           <ScalarProperty Name="Minima" ColumnName="Minima" />
-          <ScalarProperty Name="Branches_Id" ColumnName="Branches_Id" />
+          <ScalarProperty Name="IdGroupe" ColumnName="IdGroupe" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -433,6 +486,16 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="IdProfesseurs" ColumnName="IdProfesseurs" />
           <ScalarProperty Name="IdClasses" ColumnName="IdClasses" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groupes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Groupes)">
+        <MappingFragment StoreEntitySet="Groupes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Cycle" ColumnName="Cycle" />
+          <ScalarProperty Name="IdBranches" ColumnName="IdBranches" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

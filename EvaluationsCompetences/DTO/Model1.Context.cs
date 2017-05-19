@@ -32,5 +32,6 @@ namespace DTO
         public virtual DbSet<Objectifs> Objectifs { get; set; }
         public virtual DbSet<Professeurs> Professeurs { get; set; }
         public virtual DbSet<ProfesseursClasses> ProfesseursClasses { get; set; }
+        public virtual DbSet<Groupes> Groupes { get; set; }
     }
 }
