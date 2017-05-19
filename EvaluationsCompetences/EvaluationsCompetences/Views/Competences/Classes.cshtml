@@ -1,0 +1,27 @@
+﻿@model IEnumerable<DTO.Classes>
+
+@{
+    ViewBag.Title = "Classes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Liste des classes</h2>
+
+<tr>
+    <th>
+        Nom de la classe
+    </th>
+    <th></th>
+</tr>
+
+   <table class="table"> 
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            
+        </tr>
+    }
+    
+    </table>

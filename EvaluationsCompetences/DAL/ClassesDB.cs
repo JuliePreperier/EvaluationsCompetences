@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace DAL
 {
-    class ClassesDB
+    public static class ClassesDB
     {
         public static List<Classes> GetClasses(int IdProf)
         {
