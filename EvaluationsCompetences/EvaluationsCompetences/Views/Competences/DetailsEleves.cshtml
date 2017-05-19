@@ -37,15 +37,19 @@
             {
                 if (Model.objectifs.ElementAt(i).Minima == true)
                 {
-                    
+
                         <td>
                             <b>@Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom) </b>
 
                          </td>
                 }
                 else
-                    @Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.objectifs.ElementAt(i).Nom)
+                    </td>
 
+                }
 
             }
         </tr>
@@ -53,3 +57,4 @@
         }
        
     </table>
+}
