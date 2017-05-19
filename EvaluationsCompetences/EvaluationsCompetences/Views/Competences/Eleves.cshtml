@@ -1,34 +1,49 @@
-﻿@model IEnumerable<EvaluationsCompetences.ViewModels.ElevesVM>
+﻿@model IEnumerable<DTO.Eleves>
 
 @{
-    Layout = null;
+    ViewBag.Title = "Classes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<h2>Liste des élèves</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Élèves</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th></th>
-        </tr>
+
+
+<table class="table">
     
-    @foreach (var item in Model) {
+        <td>
+            <b> Nom</b>
+        </td>
+        <td>
+            <b> Prénom</b>
+        </td>
+        <td>
+            <b>Classe</b>
+        </td>
+        <th></th>
+    
+
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classes_Id)
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                @Html.ActionLink("Edit", "EditEleves", new { IdEleve = item.Id }) |
+                @Html.ActionLink("Details", "DetailsEleves", new { IdEleve = item.Id })
             </td>
         </tr>
     }
-    
-    </table>
-</body>
-</html>
+
+</table>
