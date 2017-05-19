@@ -1,17 +1,42 @@
-﻿
+﻿@model EvaluationsCompetences.ViewModels.DetailsElevesVM
 @{
     Layout = null;
 }
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>DetailsEleves</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+<h2>Eleve details</h2>
+<h3>@Html.DisplayFor(modelItem => Model.eleves.Nom)</h3>
+@using (Html.BeginForm())
+{
+    <table class="table">
+       
+          for (int i = 0; i < Model.messagesGroupe.Count(); i++)
+            {
+
+        <tr>
+            <th>
+            Branche
+            </th>
+            <th>
+            Groupes
+            </th>
+            <th>
+            Objectifs
+            </th>
+    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.branches.Nom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.groupes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => modelItem.objectifs)
+                    </td>
+                </tr>
+            }
+        }
+       
+    </table>
