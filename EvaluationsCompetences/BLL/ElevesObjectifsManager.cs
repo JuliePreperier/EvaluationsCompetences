@@ -14,5 +14,9 @@ namespace BLL
         {
             return ElevesObjectifsDB.GetElevesObjectifs(IdEleves);
         }
+        public static void UpdateElevesObjectifs(int IdEleve, int Niveaux, String Evaluation)
+        {
+            ElevesObjectifsDB.UpdateBranches(IdEleve,Niveaux,Evaluation);
+        }
     }
 }
