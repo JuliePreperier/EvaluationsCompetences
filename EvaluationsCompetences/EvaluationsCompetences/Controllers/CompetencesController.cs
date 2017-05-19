@@ -11,9 +11,19 @@ namespace EvaluationsCompetences.Controllers
 {
     public class CompetencesController
     {
-        public ActionResult Classes()
+        public ActionResult Classes(Professeurs professeur)
         {
-            var stock = 
+            if (Session["professeur"] == null)
+                return RedirectToAction("Login", "Home");
+
+            var professeurActuel = professeur;
+            var profs = professeur.Id;
+
+            ContactVM vm = new ContactVM();
+
+            vm.Members = members;
+
+            return View(vm);
         }
 
 
