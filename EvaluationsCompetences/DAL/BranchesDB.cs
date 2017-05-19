@@ -7,14 +7,13 @@ using DTO;
 using System.Data.SqlClient;
 using System.Configuration;
 
-
 namespace DAL
 {
-    public class ClassesDB
+    public class BranchesDB
     {
-        public static List<Classes> GetClasses(int IdProf)
+        public static List<Branches> GetBranches(int IdObjectif)
         {
-            List<Classes> results = null;
+            List<Branches> results = null;
 
             string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
 
@@ -22,9 +21,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Select * from Classes c, ProfesseurClasses pf where c.id=pf.IdClasse and pf.IdProf=@IdProf ";
+                    string query = "Select * from Branches where Id=@IdObjectif ";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@IdProf", IdProf);
+                    cmd.Parameters.AddWithValue("@IdObjectif", IdObjectif);
 
                     cn.Open();
 
@@ -33,20 +32,16 @@ namespace DAL
                         while (dr.Read())
                         {
                             if (results == null)
-                                results = new List<Classes>();
+                                results = new List<Branches>();
 
-                            Classes classe = new Classes();
+                            Branches branches = new Branches();
 
-                            classe.Id = (int)dr["Id"];
+                            branches.Id = (int)dr["Id"];
 
                             if (dr["Nom"] != null)
-                                classe.Nom = (String)dr["Nom"];
+                                branches.Nom = (String)dr["Nom"];
 
-                            if (dr["Cycle"] != null)
-                                classe.Cycle = (int)dr["Cycle"];
-
-                            results.Add(classe);
-
+                            results.Add(branches);
                         }
                     }
                 }

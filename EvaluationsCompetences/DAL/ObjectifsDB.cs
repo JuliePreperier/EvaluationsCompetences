@@ -10,11 +10,11 @@ using System.Configuration;
 
 namespace DAL
 {
-    public class ClassesDB
+    public class ObjectifsDB
     {
-        public static List<Classes> GetClasses(int IdProf)
+        public static List<Objectifs> GetObjectifs(int IdObjectifs)
         {
-            List<Classes> results = null;
+            List<Objectifs> results = null;
 
             string connectionString = ConfigurationManager.ConnectionStrings["Database1"].ConnectionString;
 
@@ -22,9 +22,9 @@ namespace DAL
             {
                 using (SqlConnection cn = new SqlConnection(connectionString))
                 {
-                    string query = "Select * from Classes c, ProfesseurClasses pf where c.id=pf.IdClasse and pf.IdProf=@IdProf ";
+                    string query = "Select * from Objectifs where id=@IdObjectifs ";
                     SqlCommand cmd = new SqlCommand(query, cn);
-                    cmd.Parameters.AddWithValue("@IdProf", IdProf);
+                    cmd.Parameters.AddWithValue("@IdObjectifs", IdObjectifs);
 
                     cn.Open();
 
@@ -33,19 +33,25 @@ namespace DAL
                         while (dr.Read())
                         {
                             if (results == null)
-                                results = new List<Classes>();
+                                results = new List<Objectifs>();
 
-                            Classes classe = new Classes();
+                            Objectifs objectif = new Objectifs();
 
-                            classe.Id = (int)dr["Id"];
+                            objectif.Id = (int)dr["Id"];
 
                             if (dr["Nom"] != null)
-                                classe.Nom = (String)dr["Nom"];
+                                objectif.Nom = (String)dr["Nom"];
 
                             if (dr["Cycle"] != null)
-                                classe.Cycle = (int)dr["Cycle"];
+                                objectif.Cycle = (int)dr["Cycle"];
 
-                            results.Add(classe);
+                            if (dr["Minima"] != null)
+                                objectif.Minima = (Boolean)dr["Minima"];
+
+                            if (dr["Branches_Id"] != null)
+                                objectif.Branches_Id = (int)dr["Branches_Id"];
+
+                            results.Add(objectif);
 
                         }
                     }

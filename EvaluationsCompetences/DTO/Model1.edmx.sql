@@ -1,11 +1,14 @@
+
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/19/2017 15:14:17
--- Generated from EDMX file: C:\Users\Julie\Source\Repos\EvaluationsCompetences\EvaluationsCompetences\DTO\Model2.edmx
+-- Date Created: 05/19/2017 16:30:01
+-- Generated from EDMX file: C:\Users\Colin\Source\Repos\EvaluationsCompetences\EvaluationsCompetences\DTO\Model1.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
+GO
+USE [Database1];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -14,26 +17,23 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_ObjectifsBranches]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Objectifs] DROP CONSTRAINT [FK_ObjectifsBranches];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClassesEleves]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Eleves] DROP CONSTRAINT [FK_ClassesEleves];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ProfesseuIdCla_5DCAEF64]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ProfesseursClasses] DROP CONSTRAINT [FK_ProfesseuIdCla_5DCAEF64];
+GO
 IF OBJECT_ID(N'[dbo].[FK_ElevesObjIdEle_619B8048]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ElevesObjectifs] DROP CONSTRAINT [FK_ElevesObjIdEle_619B8048];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ElevesObjIdObj_60A75C0F]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ElevesObjectifs] DROP CONSTRAINT [FK_ElevesObjIdObj_60A75C0F];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ElevesObjIdRem_628FA481]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ElevesObjectifs] DROP CONSTRAINT [FK_ElevesObjIdRem_628FA481];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ProfesseuIdCla_5DCAEF64]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ProfesseursClasses] DROP CONSTRAINT [FK_ProfesseuIdCla_5DCAEF64];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ProfesseuIdPro_5CD6CB2B]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ProfesseursClasses] DROP CONSTRAINT [FK_ProfesseuIdPro_5CD6CB2B];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ClassesEleves]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Eleves] DROP CONSTRAINT [FK_ClassesEleves];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ObjectifsBranches]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Objectifs] DROP CONSTRAINT [FK_ObjectifsBranches];
 GO
 
 -- --------------------------------------------------
@@ -60,9 +60,6 @@ IF OBJECT_ID(N'[dbo].[Professeurs]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[ProfesseursClasses]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ProfesseursClasses];
-GO
-IF OBJECT_ID(N'[dbo].[Remarques]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Remarques];
 GO
 
 -- --------------------------------------------------
@@ -101,7 +98,7 @@ CREATE TABLE [dbo].[ElevesObjectifs] (
     [Niveaux] int  NULL,
     [IdObjectifs] int  NULL,
     [IdEleves] int  NULL,
-    [IdRemarques] int  NULL
+    [Evaluation] varchar(50)  NULL
 );
 GO
 
@@ -130,13 +127,6 @@ CREATE TABLE [dbo].[ProfesseursClasses] (
     [Id] int  NOT NULL,
     [IdProfesseurs] int  NOT NULL,
     [IdClasses] int  NOT NULL
-);
-GO
-
--- Creating table 'Remarques'
-CREATE TABLE [dbo].[Remarques] (
-    [Id] int  NOT NULL,
-    [Evaluation] varchar(50)  NOT NULL
 );
 GO
 
@@ -186,12 +176,6 @@ ADD CONSTRAINT [PK_ProfesseursClasses]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Remarques'
-ALTER TABLE [dbo].[Remarques]
-ADD CONSTRAINT [PK_Remarques]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -211,21 +195,6 @@ ON [dbo].[Objectifs]
     ([Branches_Id]);
 GO
 
--- Creating foreign key on [IdClasses] in table 'ProfesseursClasses'
-ALTER TABLE [dbo].[ProfesseursClasses]
-ADD CONSTRAINT [FK_ProfesseuIdCla_5DCAEF64]
-    FOREIGN KEY ([IdClasses])
-    REFERENCES [dbo].[Classes]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ProfesseuIdCla_5DCAEF64'
-CREATE INDEX [IX_FK_ProfesseuIdCla_5DCAEF64]
-ON [dbo].[ProfesseursClasses]
-    ([IdClasses]);
-GO
-
 -- Creating foreign key on [Classes_Id] in table 'Eleves'
 ALTER TABLE [dbo].[Eleves]
 ADD CONSTRAINT [FK_ClassesEleves]
@@ -239,6 +208,21 @@ GO
 CREATE INDEX [IX_FK_ClassesEleves]
 ON [dbo].[Eleves]
     ([Classes_Id]);
+GO
+
+-- Creating foreign key on [IdClasses] in table 'ProfesseursClasses'
+ALTER TABLE [dbo].[ProfesseursClasses]
+ADD CONSTRAINT [FK_ProfesseuIdCla_5DCAEF64]
+    FOREIGN KEY ([IdClasses])
+    REFERENCES [dbo].[Classes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProfesseuIdCla_5DCAEF64'
+CREATE INDEX [IX_FK_ProfesseuIdCla_5DCAEF64]
+ON [dbo].[ProfesseursClasses]
+    ([IdClasses]);
 GO
 
 -- Creating foreign key on [IdEleves] in table 'ElevesObjectifs'
@@ -269,21 +253,6 @@ GO
 CREATE INDEX [IX_FK_ElevesObjIdObj_60A75C0F]
 ON [dbo].[ElevesObjectifs]
     ([IdObjectifs]);
-GO
-
--- Creating foreign key on [IdRemarques] in table 'ElevesObjectifs'
-ALTER TABLE [dbo].[ElevesObjectifs]
-ADD CONSTRAINT [FK_ElevesObjIdRem_628FA481]
-    FOREIGN KEY ([IdRemarques])
-    REFERENCES [dbo].[Remarques]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ElevesObjIdRem_628FA481'
-CREATE INDEX [IX_FK_ElevesObjIdRem_628FA481]
-ON [dbo].[ElevesObjectifs]
-    ([IdRemarques]);
 GO
 
 -- Creating foreign key on [IdProfesseurs] in table 'ProfesseursClasses'

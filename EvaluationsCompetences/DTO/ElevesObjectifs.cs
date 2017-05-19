@@ -12,6 +12,6 @@ namespace DTO
         public int Niveau { get; set; }
         public int IdEleves { get; set; }
         public int IdObjectifs { get; set; }
-        public int IdEvaluations { get; set; }
+        public String Evaluatoin { get; set; }
     }
 }
